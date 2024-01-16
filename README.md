@@ -1,4 +1,5 @@
 # Sam's guide to the gradliest vscode
+This guide will help you set up a vscode environment using gradle for working with java in psoft.
 
 ## Handy Tips (good to know for using vscode and this guide)
 - Command Palette (CTRL + SHIFT + P or CMD + SHIFT + P for mac) opens a textbox you can use to make vscode do things
