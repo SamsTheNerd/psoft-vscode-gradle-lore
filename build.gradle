@@ -1,0 +1,47 @@
+/**
+ Template for Gradlew-y PSOFT projects
+ */
+
+// plugin for just running stuff
+plugins {
+    id "application"
+}
+// java !
+apply plugin : "java" 
+apply plugin: 'jacoco'
+
+// repo we can yoink dependencies (like JUnit) from
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+// tell it what our Main file is. Needs full package name and class name.
+// So src/main/java/hw0/folder/anotherFolder/RandomHello.java would be hw0.folder.anotherFolder.RandomHello
+ext {
+    // MAKE SURE YOU CHANGE THIS FOR YOUR PROJECT !!!
+    // it needs to be a class with a main(String[] args) method
+    javaMainClass = "full.package.name.ClassName"
+    // so for hw0 this might be `hw0.RandomHello`
+}
+
+// tell the Application plugin what our main class is
+application {
+    mainClassName = javaMainClass
+}
+
+// add JUnit
+dependencies {
+    // Use JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+}
+
+// make the test task use JUnit
+test {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
