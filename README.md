@@ -28,7 +28,7 @@ You can check [here](https://docs.gradle.org/current/userguide/compatibility.htm
 
 - Make a file called `build.gradle` in your hw00 folder with the contents from the `build.gradle` file in this repo.
 
-- Change the class assigned to javaMainClass to your project's entrypoint (the class with a `public void main(String[] argv)` method)
+- In `build.gradle`, change the class assigned to javaMainClass to your project's entrypoint (the class with a `public void main(String[] argv)` method)
 
 You'll need to do this every time you make a new project folder
 
