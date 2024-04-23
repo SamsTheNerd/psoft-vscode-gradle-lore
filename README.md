@@ -46,3 +46,33 @@ On windows you run gradle commands in the command line (not powershell) with `gr
     - generates a coverage report using jacoco
 
 VSCode should also pop up with little run/debug buttons above your main methods, and green run triangles next to your tests (as well as showing up in the test tab). These are probably easier to use than the gradlew commands for most cases. 
+
+## JavaFX
+
+For JavaFX you'll need to use the [javafx build.gradle](https://github.com/SamsTheNerd/psoft-vscode-gradle-lore/blob/main/javafx--RENAME-THIS-FILE--build.gradle) or add the following to your existing build.gradle:
+
+add `id 'org.openjfx.javafxplugin' version '0.1.0'` in plugins so that it looks something like
+
+``` groovy
+plugins {
+    id "application"
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+```
+
+and 
+
+```groovy
+javafx {
+    version = "22"
+    modules = [ 'javafx.controls' ] 
+}
+```
+
+You may need more modules than just `javafx.controls`, add them in there if so, it's just a comma separated array. 
+
+If you're getting a "class file has wrong version" error verify that you have Java 21 using `java --version` and update if needed. Otherwise try downgrading javafx to version `17.0.1`.
+
+There's some more info on javafx gradle setups here https://openjfx.io/openjfx-docs/#gradle
+
+Make sure to set the `javaMainClass` in the build.gradle so that you can run your non-test code.

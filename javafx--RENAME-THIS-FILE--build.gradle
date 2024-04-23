@@ -1,0 +1,56 @@
+/**
+ Template for Gradlew-y PSOFT projects that use javafx
+ rename this file to just `build.gradle` or just copy paste the contents into your `build.gradle`
+ */
+
+// plugin for just running stuff
+plugins {
+    id "application"
+    id 'org.openjfx.javafxplugin' version '0.1.0' // plugin for javafx to run, idk why they don't have normal dependencies
+}
+// java !
+apply plugin : "java" 
+apply plugin: 'jacoco'
+
+// repo we can yoink dependencies (like JUnit) from
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+// tell it what our Main file is. Needs full package name and class name.
+// So src/main/java/hw0/folder/anotherFolder/RandomHello.java would be hw0.folder.anotherFolder.RandomHello
+ext {
+    // MAKE SURE YOU CHANGE THIS FOR YOUR PROJECT !!!
+    // it needs to be a class with a main(String[] args) method
+    javaMainClass = "full.package.name.ClassName"
+    // so for hw0 this might be `hw0.RandomHello`
+}
+
+// tell the Application plugin what our main class is
+application {
+    mainClassName = javaMainClass
+}
+
+// add JUnit
+dependencies {
+    // Use JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+    testImplementation 'org.hamcrest:hamcrest:2.2' // Needed for hw3
+}
+
+// make the test task use JUnit
+test {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+
+// settings for javafx 
+javafx {
+    version = "22" // version 22 seems fine?
+    modules = [ 'javafx.controls' ] // idk what modules you need. add any more you need here
+}
